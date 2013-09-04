@@ -1,4 +1,4 @@
-package com.iotake.solr.client.binder.session.impl;
+package com.iotake.solr.client.binder.session.basic;
 
 import com.iotake.solr.client.binder.session.Session;
 import com.iotake.solr.client.binder.session.SessionContext;

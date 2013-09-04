@@ -1,4 +1,4 @@
-package com.iotake.solr.client.binder.session.impl;
+package com.iotake.solr.client.binder.session.basic;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

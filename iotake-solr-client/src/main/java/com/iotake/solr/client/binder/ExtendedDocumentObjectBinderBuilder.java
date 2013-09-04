@@ -24,7 +24,7 @@ import com.iotake.solr.client.binder.instantiator.basic.DefaultBeanInstantiatorF
 import com.iotake.solr.client.binder.postprocessor.BeanPostProcessor;
 import com.iotake.solr.client.binder.postprocessor.DocumentPostProcessor;
 import com.iotake.solr.client.binder.session.SessionContext;
-import com.iotake.solr.client.binder.session.impl.NullSessionContext;
+import com.iotake.solr.client.binder.session.basic.NullSessionContext;
 import com.iotake.solr.client.binder.value.BigDecimalValueConverterFactory;
 import com.iotake.solr.client.binder.value.BigIntegerValueConverterFactory;
 import com.iotake.solr.client.binder.value.NativeValueConverterFactory;

@@ -12,7 +12,7 @@ import com.iotake.solr.client.binder.ExtendedDocumentObjectBinderBuilder;
 import com.iotake.solr.client.binder.annotation.SolrDocument;
 import com.iotake.solr.client.binder.annotation.SolrId;
 import com.iotake.solr.client.binder.itest.BaseITest;
-import com.iotake.solr.client.binder.session.impl.ThreadBoundSessionContext;
+import com.iotake.solr.client.binder.session.basic.ThreadBoundSessionContext;
 
 public class SessionIdentityITest extends BaseITest {
 

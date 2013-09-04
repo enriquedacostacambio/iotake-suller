@@ -1,4 +1,4 @@
-package com.iotake.solr.client.binder.session.impl;
+package com.iotake.solr.client.binder.session.basic;
 
 import java.util.Deque;
 import java.util.LinkedList;
