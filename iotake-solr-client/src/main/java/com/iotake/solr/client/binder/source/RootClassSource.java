@@ -6,6 +6,8 @@ import java.util.Set;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrInputDocument;
 
+import com.iotake.solr.client.binder.instantiator.BeanInstantiator;
+
 public class RootClassSource extends NotMultiValuedClassSource {
 
   private final FieldSource idFieldSource;
@@ -16,9 +18,10 @@ public class RootClassSource extends NotMultiValuedClassSource {
 
   private final String classesFieldName;
 
-  public RootClassSource(Class<?> documentClass, FieldSource idFieldSource,
-      FieldSource[] fieldSources, String classFieldName, String classesFieldName) {
-    super(documentClass, fieldSources);
+  public RootClassSource(Class<?> documentClass, BeanInstantiator instantiator,
+      FieldSource idFieldSource, FieldSource[] fieldSources,
+      String classFieldName, String classesFieldName) {
+    super(documentClass, instantiator, fieldSources);
     this.idFieldSource = idFieldSource;
     Set<String> classes = new LinkedHashSet<String>();
     collectClasses(documentClass, classes);
@@ -64,7 +67,7 @@ public class RootClassSource extends NotMultiValuedClassSource {
     Object id = idFieldSource.extract(document);
     return id;
   }
-  
+
   public Object getId(Object bean) {
     Object id = idFieldSource.getFieldValue(bean);
     return id;

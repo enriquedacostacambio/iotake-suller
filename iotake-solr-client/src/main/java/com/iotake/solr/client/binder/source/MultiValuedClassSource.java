@@ -8,14 +8,16 @@ import org.apache.solr.client.solrj.beans.BindingException;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrInputDocument;
 
+import com.iotake.solr.client.binder.instantiator.BeanInstantiator;
+
 public abstract class MultiValuedClassSource extends ClassSource implements
     MultiValuableDocumentSource {
 
   private final String path;
 
   public MultiValuedClassSource(Class<?> documentClass,
-      FieldSource[] fieldSources, String path) {
-    super(documentClass, fieldSources);
+      BeanInstantiator instantiator, FieldSource[] fieldSources, String path) {
+    super(documentClass, instantiator, fieldSources);
     this.path = path;
   }
 
@@ -42,7 +44,7 @@ public abstract class MultiValuedClassSource extends ClassSource implements
     }
     Collection<Object> beans = new ArrayList<Object>(items);
     for (int j = 0; j < items; j++) {
-      Object bean = newInstance();
+      Object bean = instantiate();
       for (int i = 0; i < fieldSources.length; i++) {
         FieldSource fieldSource = fieldSources[i];
         Iterator<Object> iterator = iterators[i];

@@ -1,12 +1,13 @@
 package com.iotake.solr.client.binder.source;
 
+import com.iotake.solr.client.binder.instantiator.BeanInstantiator;
 
 public class NotMultiValuedEmbeddableClassSource extends
     NotMultiValuedClassSource {
 
   public NotMultiValuedEmbeddableClassSource(Class<?> documentClass,
-      FieldSource[] fieldSources) {
-    super(documentClass, fieldSources);
+      BeanInstantiator instantiator, FieldSource[] fieldSources) {
+    super(documentClass, instantiator, fieldSources);
   }
 
   public SourceType getType() {

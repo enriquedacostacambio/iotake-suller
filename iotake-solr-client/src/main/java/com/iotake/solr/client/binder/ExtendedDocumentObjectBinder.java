@@ -13,6 +13,8 @@ import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 
 import com.iotake.solr.client.binder.collection.CollectionCreatorFactory;
+import com.iotake.solr.client.binder.instantiator.BeanInstantiator;
+import com.iotake.solr.client.binder.instantiator.BeanInstantiatorFactory;
 import com.iotake.solr.client.binder.postprocessor.BeanPostProcessor;
 import com.iotake.solr.client.binder.postprocessor.DocumentPostProcessor;
 import com.iotake.solr.client.binder.session.Session;
@@ -33,8 +35,9 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
   private final Map<Class<?>, CollectionCreatorFactory> collectionCreatorFactories;
   private final Map<Class<?>, ValueConverterFactory> valueConverterFactories;
   private final ValueConverterFactory fallbackValueConverterFactory;
-  private final ArrayList<BeanPostProcessor> beanPostProcessors;
-  private final ArrayList<DocumentPostProcessor> documentPostProcessors;
+  private final BeanInstantiatorFactory beanInstantiatorFactory;
+  private final List<BeanPostProcessor> beanPostProcessors;
+  private final List<DocumentPostProcessor> documentPostProcessors;
   private final boolean nullTrickEnabled;
 
   public ExtendedDocumentObjectBinder() {
@@ -48,6 +51,7 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
         ExtendedDocumentObjectBinderBuilder.DEFAULT_COLLECTION_CREATOR_FACTORIES,
         ExtendedDocumentObjectBinderBuilder.DEFAULT_VALUE_CONVERTER_FACTORIES,
         ExtendedDocumentObjectBinderBuilder.DEFAULT_FALLBACK_CONVERTER_FACTORY,
+        ExtendedDocumentObjectBinderBuilder.DEFAULT_BEAN_INSTANTIATOR_FACTORY,
         Collections.<BeanPostProcessor> emptyList(), Collections
             .<DocumentPostProcessor> emptyList(),
         ExtendedDocumentObjectBinderBuilder.DEFAULT_NULL_TRICK_ENABLED);
@@ -59,6 +63,7 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
       Map<Class<?>, CollectionCreatorFactory> collectionCreatorFactories,
       Map<Class<?>, ValueConverterFactory> valueConverterFactories,
       ValueConverterFactory fallbackValueConverterFactory,
+      BeanInstantiatorFactory beanInstantiatorFactory,
       List<BeanPostProcessor> beanPostProcessors,
       List<DocumentPostProcessor> documentPostProcessors,
       boolean nullTrickEnabled) {
@@ -73,6 +78,7 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
     this.valueConverterFactories = new HashMap<Class<?>, ValueConverterFactory>(
         valueConverterFactories);
     this.fallbackValueConverterFactory = fallbackValueConverterFactory;
+    this.beanInstantiatorFactory = beanInstantiatorFactory;
     this.beanPostProcessors = new ArrayList<BeanPostProcessor>(
         beanPostProcessors);
     this.documentPostProcessors = new ArrayList<DocumentPostProcessor>(
@@ -127,6 +133,15 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
     return collectionCreatorFactories.get(collectionType);
   }
 
+  public BeanInstantiator createBeanInstantiator(Class<?> beanClass) {
+    try {
+      return beanInstantiatorFactory.create(beanClass);
+    } catch (Exception e) {
+      throw new BindingException("Error creating bean instantiator for class "
+          + beanClass.getName(), e);
+    }
+  }
+
   public <T> T getBean(SolrDocument document) {
     return getBean(null, document);
   }
@@ -154,15 +169,15 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
           session.register(id, beanClass.cast(bean));
         }
       }
-
+      return beanClass.cast(bean);
     } catch (Exception e) {
       throw new BindingException("Error constructing bean of class: "
-          + className, e);
+          + className + " from document " + document, e);
     }
-    return beanClass.cast(bean);
   }
 
-  private Object extract(RootClassSource rootClassSource, SolrDocument document) {
+  private Object extract(RootClassSource rootClassSource, SolrDocument document)
+      throws Exception {
     Object bean = rootClassSource.extract(document);
     Object postBean = postProcess(document, bean);
     return postBean;
@@ -196,32 +211,40 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
   public SolrInputDocument toSolrInputDocument(Object bean) {
     Class<?> beanClass = bean.getClass();
     RootClassSource rootClassSource = getRootClassSource(beanClass);
-    SolrInputDocument postDocument = transfer(bean, rootClassSource);
+    try {
+      SolrInputDocument document = transfer(bean, rootClassSource);
 
-    Object id = rootClassSource.getId(bean);
-    Session session = sessionContext.current();
-    if (session != null) {
-      session.register(id, bean);
-    } else {
+      Object id = rootClassSource.getId(bean);
+      Session session = sessionContext.current();
+      if (session != null) {
+        session.register(id, bean);
+      } else {
+      }
+      return document;
+    } catch (Exception e) {
+      throw new BindingException(
+          "Error constructing document for bean of class "
+              + beanClass.getName() + ":" + bean, e);
     }
-    return postDocument;
   }
 
   private SolrInputDocument transfer(Object bean,
-      RootClassSource rootClassSource) {
+      RootClassSource rootClassSource) throws Exception {
     SolrInputDocument document = rootClassSource.transfer(bean);
     SolrInputDocument postDocument = postProcess(bean, document);
     return postDocument;
   }
 
-  private SolrInputDocument postProcess(Object bean, SolrInputDocument document) {
+  private SolrInputDocument postProcess(Object bean, SolrInputDocument document)
+      throws Exception {
     for (DocumentPostProcessor documentPostProcessor : documentPostProcessors) {
       document = documentPostProcessor.postProcess(bean, document);
     }
     return document;
   }
 
-  private Object postProcess(SolrDocument document, Object bean) {
+  private Object postProcess(SolrDocument document, Object bean)
+      throws Exception {
     for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
       bean = beanPostProcessor.postProcess(document, bean);
     }

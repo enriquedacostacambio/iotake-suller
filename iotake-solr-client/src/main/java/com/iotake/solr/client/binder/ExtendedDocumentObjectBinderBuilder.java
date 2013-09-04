@@ -19,6 +19,8 @@ import com.iotake.solr.client.binder.collection.CollectionCreatorFactory;
 import com.iotake.solr.client.binder.collection.HashSetCreatorFactory;
 import com.iotake.solr.client.binder.collection.LinkedHashSetCreatorFactory;
 import com.iotake.solr.client.binder.collection.LinkedListCreatorFactory;
+import com.iotake.solr.client.binder.instantiator.BeanInstantiatorFactory;
+import com.iotake.solr.client.binder.instantiator.basic.DefaultBeanInstantiatorFactory;
 import com.iotake.solr.client.binder.postprocessor.BeanPostProcessor;
 import com.iotake.solr.client.binder.postprocessor.DocumentPostProcessor;
 import com.iotake.solr.client.binder.session.SessionContext;
@@ -41,6 +43,7 @@ public class ExtendedDocumentObjectBinderBuilder {
   public static final boolean DEFAULT_APPEND_DEFAULT_VALUE_CONVERTER_FACTORIES = true;
   public static final boolean DEFAULT_APPEND_COLLECTION_CREATOR_FACTORIES = true;
   public static final boolean DEFAULT_NULL_TRICK_ENABLED = true;
+  public static final BeanInstantiatorFactory DEFAULT_BEAN_INSTANTIATOR_FACTORY = new DefaultBeanInstantiatorFactory();
 
   public static final Map<Class<?>, ValueConverterFactory> DEFAULT_VALUE_CONVERTER_FACTORIES;
   static {
@@ -104,6 +107,7 @@ public class ExtendedDocumentObjectBinderBuilder {
   private volatile Map<Class<?>, CollectionCreatorFactory> collectionCreatorFactories = new HashMap<Class<?>, CollectionCreatorFactory>();
   private volatile Map<Class<?>, ValueConverterFactory> valueConverterFactories = new HashMap<Class<?>, ValueConverterFactory>();
   private volatile ValueConverterFactory fallbackValueConverterFactory = DEFAULT_FALLBACK_CONVERTER_FACTORY;
+  private volatile BeanInstantiatorFactory beanInstantiatorFactory = DEFAULT_BEAN_INSTANTIATOR_FACTORY;
   private volatile List<BeanPostProcessor> beanPostProcessors = new LinkedList<BeanPostProcessor>();
   private volatile List<DocumentPostProcessor> documentPostProcessors = new LinkedList<DocumentPostProcessor>();
   private volatile boolean nullTrickEnabled = DEFAULT_NULL_TRICK_ENABLED;
@@ -235,6 +239,16 @@ public class ExtendedDocumentObjectBinderBuilder {
     return this;
   }
 
+  public BeanInstantiatorFactory getBeanInstantiatorFactory() {
+    return beanInstantiatorFactory;
+  }
+
+  public ExtendedDocumentObjectBinderBuilder setBeanInstantiatorFactory(
+      BeanInstantiatorFactory beanInstantiatorFactory) {
+    this.beanInstantiatorFactory = beanInstantiatorFactory;
+    return this;
+  }
+
   public List<BeanPostProcessor> getBeanPostProcessors() {
     return beanPostProcessors;
   }
@@ -291,7 +305,7 @@ public class ExtendedDocumentObjectBinderBuilder {
     return new ExtendedDocumentObjectBinder(sessionContext, fieldPathSeprator,
         globalIdFieldName, classFieldName, classesFieldName, classLoader,
         collectionCreatorFactories, valueConverterFactories,
-        fallbackValueConverterFactory, beanPostProcessors,
-        documentPostProcessors, nullTrickEnabled);
+        fallbackValueConverterFactory, beanInstantiatorFactory,
+        beanPostProcessors, documentPostProcessors, nullTrickEnabled);
   }
 }

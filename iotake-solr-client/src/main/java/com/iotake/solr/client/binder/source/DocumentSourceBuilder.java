@@ -21,6 +21,7 @@ import com.iotake.solr.client.binder.annotation.SolrTransient;
 import com.iotake.solr.client.binder.annotation.SolrWritable;
 import com.iotake.solr.client.binder.collection.CollectionCreator;
 import com.iotake.solr.client.binder.collection.CollectionCreatorFactory;
+import com.iotake.solr.client.binder.instantiator.BeanInstantiator;
 import com.iotake.solr.client.binder.value.EnumValueConverterFactory;
 import com.iotake.solr.client.binder.value.GlobalIdValueConverterFactory;
 import com.iotake.solr.client.binder.value.MultiSlotValueConverter;
@@ -37,17 +38,18 @@ public class DocumentSourceBuilder {
   }
 
   public RootClassSource create(Class<?> documentClass) {
+    BeanInstantiator instantiator = binder.createBeanInstantiator(documentClass);
     FieldSource idFieldSource = findIdSource(documentClass, documentClass);
     FieldSource[] fieldSources = findFieldSources(documentClass,
         idFieldSource.getField(), null, false);
-    return new RootClassSource(documentClass, idFieldSource, fieldSources,
-        binder.getClassFieldName(), binder.getClassesFieldName());
+    return new RootClassSource(documentClass, instantiator, idFieldSource,
+        fieldSources, binder.getClassFieldName(), binder.getClassesFieldName());
 
   }
 
   private FieldSource[] findFieldSources(Class<?> documentClass, Field idField,
       String path, boolean isMultiValued) {
-    List<FieldSource> fieldSources = new LinkedList<FieldSource>  ();
+    List<FieldSource> fieldSources = new LinkedList<FieldSource>();
     collectSources(documentClass, documentClass, idField, fieldSources, path,
         isMultiValued);
     return fieldSources.toArray(new FieldSource[fieldSources.size()]);
@@ -281,12 +283,14 @@ public class DocumentSourceBuilder {
     ClassSource embeddedClasSource;
     FieldSource[] fieldSources = findFieldSources(targetType, null, path,
         multivalued);
+
+    BeanInstantiator instantiator = binder.createBeanInstantiator(targetType);
     if (multivalued) {
       embeddedClasSource = new MultiValuedEmbeddableClassSource(targetType,
-          fieldSources, path);
+          instantiator, fieldSources, path);
     } else {
       embeddedClasSource = new NotMultiValuedEmbeddableClassSource(targetType,
-          fieldSources);
+          instantiator, fieldSources);
     }
     return new EmbeddedSource(targetType, field, readable, writable,
         embeddedClasSource);
