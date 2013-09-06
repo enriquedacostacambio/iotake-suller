@@ -36,10 +36,9 @@ public class PositionExtractITest extends AbstractExtractITest {
     long id = 123;
     double longitude = 53.15;
     double latitude = 42.6;
-    EasyDocument document = new EasyDocument(WithPositon.class, id,
-        WithPositon.class, WithPositon.class, Object.class).set(
-        "WithPositon__id", id).set("WithPositon__position",
-        longitude + " " + latitude);
+    EasyDocument document = new EasyDocument(id, WithPositon.class,
+        WithPositon.class, Object.class).set("WithPositon__id", id).set(
+        "WithPositon__position", longitude + " " + latitude);
     WithPositon bean = binder.getBean(document);
     assertEquals(id, bean.id);
     assertNotNull(bean.position);
@@ -55,9 +54,9 @@ public class PositionExtractITest extends AbstractExtractITest {
   @Test
   public void withNullPosition() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithPositon.class, id,
-        WithPositon.class, WithPositon.class, Object.class).set(
-        "WithPositon__id", id).set("WithPositon__position", null);
+    EasyDocument document = new EasyDocument(id, WithPositon.class,
+        WithPositon.class, Object.class).set("WithPositon__id", id).set(
+        "WithPositon__position", null);
     WithPositon bean = binder.getBean(document);
     assertEquals(id, bean.id);
     assertNull(bean.position);

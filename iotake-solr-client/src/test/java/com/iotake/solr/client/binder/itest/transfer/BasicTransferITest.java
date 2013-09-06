@@ -62,7 +62,7 @@ public class BasicTransferITest extends AbstractTransferITest {
     WithSuperclass bean = new WithSuperclass();
     SolrInputDocument document = binder.toSolrInputDocument(bean);
     checkFieldCount(document, 3);
-    checkGlobalId(document, Basic.class, bean.id);
+    checkGlobalId(document, WithSuperclass.class, bean.id);
     checkClass(document, WithSuperclass.class);
     checkClasses(document, WithSuperclass.class, Basic.class, Object.class);
     checkProperty(document, "Basic__id", bean.id);

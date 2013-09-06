@@ -21,27 +21,42 @@ public class BaseITest {
 
     private static final long serialVersionUID = 1L;
 
-    public EasyDocument(Class<?> idBeanClass, Object id, Class<?> beanClass,
-        Class<?>... beanClasses) {
+    public EasyDocument(Object id, Class<?> beanClass, Class<?>... beanClasses) {
+      setGlobalId(id, beanClass);
+      setBeanClass(beanClass);
+      setBeanClasses(beanClass, beanClasses);
+    }
+
+    public EasyDocument setGlobalId(Object id, Class<?> beanClass) {
       String globalId = null;
       if (id != null) {
-        globalId = idBeanClass.getName() + GlobalIdValueConverter.DELIMITER
-            + id;
+        globalId = beanClass.getName() + GlobalIdValueConverter.DELIMITER + id;
       }
-      set(binder.getGlobalIdFieldName(), globalId);
-      String beanClassName = null;
-      if (beanClass != null) {
-        beanClassName = beanClass.getName();
-      }
-      set(binder.getClassFieldName(), beanClassName);
+      return set(binder.getGlobalIdFieldName(), globalId);
+    }
+
+    public EasyDocument setBeanClasses(Class<?> beanClass,
+        Class<?>... beanClasses) {
       Set<String> beanClassNames = null;
       if (beanClasses != null) {
         beanClassNames = new LinkedHashSet<String>(beanClasses.length);
         for (Class<?> aBeanClass : beanClasses) {
-          beanClassNames.add(aBeanClass.getName());
+          String beanClassName = null;
+          if (beanClass != null) {
+            beanClassName = aBeanClass.getName();
+          }
+          beanClassNames.add(beanClassName);
         }
       }
-      set(binder.getClassesFieldName(), beanClassNames);
+      return set(binder.getClassesFieldName(), beanClassNames);
+    }
+
+    public EasyDocument setBeanClass(Class<?> beanClass) {
+      String beanClassName = null;
+      if (beanClass != null) {
+        beanClassName = beanClass.getName();
+      }
+      return set(binder.getClassFieldName(), beanClassName);
     }
 
     public EasyDocument set(String key, Object value) {

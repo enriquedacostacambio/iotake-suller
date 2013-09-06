@@ -33,9 +33,8 @@ public class EmbeddedExtractITest extends AbstractExtractITest {
   public void withEmbeddable() {
     long id = 123;
     Short embeddedProperty = 45;
-    EasyDocument document = new EasyDocument(WithEmbeddable.class, id,
-        WithEmbeddable.class, WithEmbeddable.class, Object.class).set(
-        "WithEmbeddable__id", id).set(
+    EasyDocument document = new EasyDocument(id, WithEmbeddable.class,
+        WithEmbeddable.class, Object.class).set("WithEmbeddable__id", id).set(
         "WithEmbeddable__embedded__embeddedProperty", embeddedProperty);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithEmbeddable.class));
@@ -48,9 +47,8 @@ public class EmbeddedExtractITest extends AbstractExtractITest {
   @Test
   public void withNullEmbeddable() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithEmbeddable.class, id,
-        WithEmbeddable.class, WithEmbeddable.class, Object.class).set(
-        "WithEmbeddable__id", id).set(
+    EasyDocument document = new EasyDocument(id, WithEmbeddable.class,
+        WithEmbeddable.class, Object.class).set("WithEmbeddable__id", id).set(
         "WithEmbeddable__embedded__embeddedProperty", null);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithEmbeddable.class));
@@ -77,8 +75,8 @@ public class EmbeddedExtractITest extends AbstractExtractITest {
   @Test(expected = BindingException.class)
   public void withNullNotNullableEmbeddable() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithNotNullableEmbeddable.class,
-        id, WithNotNullableEmbeddable.class, WithNotNullableEmbeddable.class,
+    EasyDocument document = new EasyDocument(id,
+        WithNotNullableEmbeddable.class, WithNotNullableEmbeddable.class,
         Object.class).set("WithNotNullableEmbeddable__id", id).set(
         "WithNotNullableEmbeddable__embedded__embeddedProperty", null);
     binder.getBean(document);
@@ -100,11 +98,11 @@ public class EmbeddedExtractITest extends AbstractExtractITest {
   public void withNestedEmbeddable() {
     long id = 123;
     Short embeddedProperty = 45;
-    EasyDocument document = new EasyDocument(WithNestedEmbeddable.class, id,
-        WithNestedEmbeddable.class, WithNestedEmbeddable.class, Object.class)
-        .set("WithNestedEmbeddable__id", id).set(
-            "WithNestedEmbeddable__nesting__nested__embeddedProperty",
-            embeddedProperty);
+    EasyDocument document = new EasyDocument(id, WithNestedEmbeddable.class,
+        WithNestedEmbeddable.class, Object.class).set(
+        "WithNestedEmbeddable__id", id).set(
+        "WithNestedEmbeddable__nesting__nested__embeddedProperty",
+        embeddedProperty);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithNestedEmbeddable.class));
     WithNestedEmbeddable bean = (WithNestedEmbeddable) object;
@@ -132,9 +130,9 @@ public class EmbeddedExtractITest extends AbstractExtractITest {
   @Test(expected = BindingException.class)
   public void withNestedMultiValued() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithNestedMultiValued.class, id,
-        WithNestedMultiValued.class, WithNestedMultiValued.class, Object.class)
-        .set("WithNestedMultiValued__id", id);
+    EasyDocument document = new EasyDocument(id, WithNestedMultiValued.class,
+        WithNestedMultiValued.class, Object.class).set(
+        "WithNestedMultiValued__id", id);
     binder.getBean(document);
   }
 

@@ -26,10 +26,9 @@ public class EnumeratedExtractITest extends AbstractExtractITest {
   public void withNameEnumerated() {
     long id = 123;
     RetentionPolicy enumerated = RetentionPolicy.RUNTIME;
-    EasyDocument document = new EasyDocument(WithNameEnumerated.class, id,
-        WithNameEnumerated.class, WithNameEnumerated.class, Object.class).set(
-        "WithNameEnumerated__id", id).set("WithNameEnumerated__enumerated",
-        enumerated.name());
+    EasyDocument document = new EasyDocument(id, WithNameEnumerated.class,
+        WithNameEnumerated.class, Object.class).set("WithNameEnumerated__id",
+        id).set("WithNameEnumerated__enumerated", enumerated.name());
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithNameEnumerated.class));
     WithNameEnumerated bean = (WithNameEnumerated) object;
@@ -49,10 +48,10 @@ public class EnumeratedExtractITest extends AbstractExtractITest {
   public void withOrdinalEnumerated() {
     long id = 123;
     RetentionPolicy enumerated = RetentionPolicy.RUNTIME;
-    EasyDocument document = new EasyDocument(WithOrdinalEnumerated.class, id,
-        WithOrdinalEnumerated.class, WithOrdinalEnumerated.class, Object.class)
-        .set("WithOrdinalEnumerated__id", id).set(
-            "WithOrdinalEnumerated__enumerated", enumerated.ordinal());
+    EasyDocument document = new EasyDocument(id, WithOrdinalEnumerated.class,
+        WithOrdinalEnumerated.class, Object.class).set(
+        "WithOrdinalEnumerated__id", id).set(
+        "WithOrdinalEnumerated__enumerated", enumerated.ordinal());
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithOrdinalEnumerated.class));
     WithOrdinalEnumerated bean = (WithOrdinalEnumerated) object;

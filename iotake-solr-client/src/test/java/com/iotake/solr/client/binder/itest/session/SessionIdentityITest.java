@@ -31,7 +31,7 @@ public class SessionIdentityITest extends BaseITest {
 
   private EasyDocument createDocument() {
     Long id = 123456789L;
-    return new EasyDocument(Bean.class, id, Bean.class, Bean.class,
+    return new EasyDocument(id, Bean.class, Bean.class,
         Object.class).set("Bean__id", id);
   }
 

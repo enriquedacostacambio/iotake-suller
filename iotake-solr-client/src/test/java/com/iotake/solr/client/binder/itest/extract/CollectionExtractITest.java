@@ -40,9 +40,9 @@ public class CollectionExtractITest extends AbstractExtractITest {
       collection.add("abc");
       collection.add("def");
     }
-    EasyDocument document = new EasyDocument(WithCollection.class, id,
-        WithCollection.class, WithCollection.class, Object.class).set(
-        "WithCollection__id", id).set("WithCollection__collection", collection);
+    EasyDocument document = new EasyDocument(id, WithCollection.class,
+        WithCollection.class, Object.class).set("WithCollection__id", id).set(
+        "WithCollection__collection", collection);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithCollection.class));
     WithCollection bean = (WithCollection) object;
@@ -67,9 +67,9 @@ public class CollectionExtractITest extends AbstractExtractITest {
     long id = 123;
     List<Integer> embeddedCollection = Arrays
         .asList(new Integer[] { 456, 789 });
-    EasyDocument document = new EasyDocument(WithEmbeddedCollection.class, id,
-        WithEmbeddedCollection.class, WithEmbeddedCollection.class,
-        Object.class).set("WithEmbeddedCollection__id", id).set(
+    EasyDocument document = new EasyDocument(id, WithEmbeddedCollection.class,
+        WithEmbeddedCollection.class, Object.class).set(
+        "WithEmbeddedCollection__id", id).set(
         "WithEmbeddedCollection__embedded__embeddedCollection",
         embeddedCollection);
     Object object = binder.getBean(document);
@@ -100,10 +100,9 @@ public class CollectionExtractITest extends AbstractExtractITest {
       embeddedProperties.add((short) 23);
       embeddedProperties.add((short) 45);
     }
-    EasyDocument document = new EasyDocument(WithCollectionOfEmbeddables.class,
-        id, WithCollectionOfEmbeddables.class,
-        WithCollectionOfEmbeddables.class, Object.class).set(
-        "WithCollectionOfEmbeddables__id", id).set(
+    EasyDocument document = new EasyDocument(id,
+        WithCollectionOfEmbeddables.class, WithCollectionOfEmbeddables.class,
+        Object.class).set("WithCollectionOfEmbeddables__id", id).set(
         "WithCollectionOfEmbeddables__collection__embeddedProperty",
         embeddedProperties);
     Object object = binder.getBean(document);
@@ -136,10 +135,10 @@ public class CollectionExtractITest extends AbstractExtractITest {
       collection.add("abc");
       collection.add("def");
     }
-    EasyDocument document = new EasyDocument(WithTargetCollection.class, id,
-        WithTargetCollection.class, WithTargetCollection.class, Object.class)
-        .set("WithTargetCollection__id", id).set(
-            "WithTargetCollection__collection", collection);
+    EasyDocument document = new EasyDocument(id, WithTargetCollection.class,
+        WithTargetCollection.class, Object.class).set(
+        "WithTargetCollection__id", id).set("WithTargetCollection__collection",
+        collection);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithTargetCollection.class));
     WithTargetCollection bean = (WithTargetCollection) object;
@@ -167,8 +166,7 @@ public class CollectionExtractITest extends AbstractExtractITest {
       collection.add(firstValue);
       collection.add(secondValue);
     }
-    EasyDocument document = new EasyDocument(
-        WithTargetAndTargetCollection.class, id,
+    EasyDocument document = new EasyDocument(id,
         WithTargetAndTargetCollection.class,
         WithTargetAndTargetCollection.class, Object.class).set(
         "WithTargetAndTargetCollection__id", id).set(
@@ -192,9 +190,9 @@ public class CollectionExtractITest extends AbstractExtractITest {
   @Test
   public void withNullCollection() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithCollection.class, id,
-        WithCollection.class, WithCollection.class, Object.class).set(
-        "WithCollection__id", id).set("WithCollection__collection", null);
+    EasyDocument document = new EasyDocument(id, WithCollection.class,
+        WithCollection.class, Object.class).set("WithCollection__id", id).set(
+        "WithCollection__collection", null);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithCollection.class));
     WithCollection bean = (WithCollection) object;
@@ -206,9 +204,9 @@ public class CollectionExtractITest extends AbstractExtractITest {
   @Test
   public void withEmptyCollection() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithCollection.class, id,
-        WithCollection.class, WithCollection.class, Object.class).set(
-        "WithCollection__id", id).set("WithCollection__collection", null);
+    EasyDocument document = new EasyDocument(id, WithCollection.class,
+        WithCollection.class, Object.class).set("WithCollection__id", id).set(
+        "WithCollection__collection", null);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithCollection.class));
     WithCollection bean = (WithCollection) object;
@@ -221,9 +219,9 @@ public class CollectionExtractITest extends AbstractExtractITest {
   public void withSingleElementCollection() {
     long id = 123;
     Set<String> collection = Collections.singleton("abc");
-    EasyDocument document = new EasyDocument(WithCollection.class, id,
-        WithCollection.class, WithCollection.class, Object.class).set(
-        "WithCollection__id", id).set("WithCollection__collection", collection);
+    EasyDocument document = new EasyDocument(id, WithCollection.class,
+        WithCollection.class, Object.class).set("WithCollection__id", id).set(
+        "WithCollection__collection", collection);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithCollection.class));
     WithCollection bean = (WithCollection) object;
@@ -240,9 +238,9 @@ public class CollectionExtractITest extends AbstractExtractITest {
       collection.add("abc");
       collection.add(null);
     }
-    EasyDocument document = new EasyDocument(WithCollection.class, id,
-        WithCollection.class, WithCollection.class, Object.class).set(
-        "WithCollection__id", id).set("WithCollection__collection", collection);
+    EasyDocument document = new EasyDocument(id, WithCollection.class,
+        WithCollection.class, Object.class).set("WithCollection__id", id).set(
+        "WithCollection__collection", collection);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithCollection.class));
     WithCollection bean = (WithCollection) object;
@@ -262,9 +260,9 @@ public class CollectionExtractITest extends AbstractExtractITest {
       collection.add("abc");
       collection.add(null);
     }
-    EasyDocument document = new EasyDocument(WithCollection.class, id,
-        WithCollection.class, WithCollection.class, Object.class).set(
-        "WithCollection__id", id).set("WithCollection__collection", collection);
+    EasyDocument document = new EasyDocument(id, WithCollection.class,
+        WithCollection.class, Object.class).set("WithCollection__id", id).set(
+        "WithCollection__collection", collection);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithCollection.class));
     WithCollection bean = (WithCollection) object;

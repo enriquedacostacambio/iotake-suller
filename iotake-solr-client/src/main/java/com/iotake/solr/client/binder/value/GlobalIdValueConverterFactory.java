@@ -18,7 +18,7 @@ public class GlobalIdValueConverterFactory extends
     public GlobalIdValueConverter(Class<?> targetType, Class<?> documentClass,
         Field field, String path, String slotNameSeparator) {
       super(Anything.class, targetType, documentClass, field, path);
-      idPrefix = field.getDeclaringClass().getName() + DELIMITER;
+      idPrefix = documentClass.getName() + DELIMITER;
       ValueConverterFactory converterFactory = new StringifiableValueConverterFactory();
       converter = (SingleSlotValueConverter) converterFactory.create(
           field.getType(), documentClass, field, path, slotNameSeparator);

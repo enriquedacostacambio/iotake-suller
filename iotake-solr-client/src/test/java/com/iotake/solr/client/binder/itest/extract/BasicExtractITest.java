@@ -35,9 +35,8 @@ public class BasicExtractITest extends AbstractExtractITest {
   public void basic() {
     long id = 123;
     String property = "abc";
-    EasyDocument document = new EasyDocument(Basic.class, id, Basic.class,
-        Basic.class, Object.class).set("Basic__id", id).set("Basic__property",
-        property);
+    EasyDocument document = new EasyDocument(id, Basic.class, Basic.class,
+        Object.class).set("Basic__id", id).set("Basic__property", property);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(Basic.class));
     Basic bean = (Basic) object;
@@ -54,9 +53,9 @@ public class BasicExtractITest extends AbstractExtractITest {
   @Test
   public void withInterface() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithInterface.class, id,
-        WithInterface.class, WithInterface.class, Object.class,
-        RandomAccess.class).set("WithInterface__id", id);
+    EasyDocument document = new EasyDocument(id, WithInterface.class,
+        WithInterface.class, Object.class, RandomAccess.class).set(
+        "WithInterface__id", id);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithInterface.class));
     WithInterface bean = (WithInterface) object;
@@ -73,9 +72,9 @@ public class BasicExtractITest extends AbstractExtractITest {
     long id = 123;
     String property = "abc";
     Integer additionalProperty = 456;
-    EasyDocument document = new EasyDocument(Basic.class, id,
-        WithSuperclass.class, WithSuperclass.class, Basic.class, Object.class)
-        .set("Basic__id", id).set("Basic__property", property)
+    EasyDocument document = new EasyDocument(id, WithSuperclass.class,
+        WithSuperclass.class, Basic.class, Object.class).set("Basic__id", id)
+        .set("Basic__property", property)
         .set("WithSuperclass__additionalProperty", additionalProperty);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithSuperclass.class));
@@ -99,9 +98,9 @@ public class BasicExtractITest extends AbstractExtractITest {
   public void renamed() {
     long id = 123;
     String property = "abc";
-    EasyDocument document = new EasyDocument(Renamed.class, id, Renamed.class,
-        Renamed.class, Object.class).set("OtherName__objId", id).set(
-        "OtherName__prop", property);
+    EasyDocument document = new EasyDocument(id, Renamed.class, Renamed.class,
+        Object.class).set("OtherName__objId", id).set("OtherName__prop",
+        property);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(Renamed.class));
     Renamed bean = (Renamed) object;
@@ -121,9 +120,9 @@ public class BasicExtractITest extends AbstractExtractITest {
   public void withNonReadable() {
     long id = 123;
     String property = "abc";
-    EasyDocument document = new EasyDocument(WithNonReadable.class, id,
-        WithNonReadable.class, WithNonReadable.class, Object.class).set(
-        "WithNonReadable__id", id).set("WithNonReadable__property", property);
+    EasyDocument document = new EasyDocument(id, WithNonReadable.class,
+        WithNonReadable.class, Object.class).set("WithNonReadable__id", id)
+        .set("WithNonReadable__property", property);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithNonReadable.class));
     WithNonReadable bean = (WithNonReadable) object;
@@ -143,9 +142,9 @@ public class BasicExtractITest extends AbstractExtractITest {
   public void withTransient() {
     long id = 123;
     String property = "abc";
-    EasyDocument document = new EasyDocument(WithTransient.class, id,
-        WithTransient.class, WithTransient.class, Object.class).set(
-        "WithTransient__id", id).set("WithTransient__property", property);
+    EasyDocument document = new EasyDocument(id, WithTransient.class,
+        WithTransient.class, Object.class).set("WithTransient__id", id).set(
+        "WithTransient__property", property);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithTransient.class));
     WithTransient bean = (WithTransient) object;
@@ -165,9 +164,9 @@ public class BasicExtractITest extends AbstractExtractITest {
   public void withTarget() {
     long id = 123;
     String property = "abc";
-    EasyDocument document = new EasyDocument(WithTarget.class, id,
-        WithTarget.class, WithTarget.class, Object.class).set("WithTarget__id",
-        id).set("WithTarget__property", property);
+    EasyDocument document = new EasyDocument(id, WithTarget.class,
+        WithTarget.class, Object.class).set("WithTarget__id", id).set(
+        "WithTarget__property", property);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithTarget.class));
     WithTarget bean = (WithTarget) object;
@@ -195,9 +194,8 @@ public class BasicExtractITest extends AbstractExtractITest {
   @Test(expected = BindingException.class)
   public void withNullId() {
     Long id = 123L;
-    EasyDocument document = new EasyDocument(WithNullableId.class, id,
-        WithNullableId.class, WithNullableId.class, Object.class).set(
-        "WithNullableId__id", null);
+    EasyDocument document = new EasyDocument(id, WithNullableId.class,
+        WithNullableId.class, Object.class).set("WithNullableId__id", null);
     binder.getBean(document);
   }
 
@@ -212,16 +210,17 @@ public class BasicExtractITest extends AbstractExtractITest {
   @Test(expected = BindingException.class)
   public void withNullClass() {
     Long id = 123L;
-    EasyDocument document = new EasyDocument(WithNullableId.class, id, null,
-        WithNullableId.class, Object.class).set("WithNullableId_id", id);
+    EasyDocument document = new EasyDocument(id, WithNullableId.class,
+        WithNullableId.class, Object.class).setBeanClass(null).set(
+        "WithNullableId_id", id);
     binder.getBean(document);
   }
 
   @Test
   public void withNullClasses() {
     Long id = 123L;
-    EasyDocument document = new EasyDocument(WithNullableId.class, id,
-        WithNullableId.class, (Class<?>[]) null).set("WithNullableId_id", id);
+    EasyDocument document = new EasyDocument(id, WithNullableId.class,
+        (Class<?>[]) null).set("WithNullableId_id", id);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithNullableId.class));
     WithNullableId bean = (WithNullableId) object;
@@ -235,8 +234,8 @@ public class BasicExtractITest extends AbstractExtractITest {
   @Test(expected = BindingException.class)
   public void withNoId() {
     Long id = 123L;
-    EasyDocument document = new EasyDocument(WithNoId.class, id,
-        WithNoId.class, WithNoId.class, Object.class);
+    EasyDocument document = new EasyDocument(id, WithNoId.class,
+        WithNoId.class, Object.class);
     binder.getBean(document);
   }
 
@@ -252,17 +251,16 @@ public class BasicExtractITest extends AbstractExtractITest {
   @Test(expected = BindingException.class)
   public void withUnsupportedType() {
     Long id = 123L;
-    EasyDocument document = new EasyDocument(WithUnsupportedType.class, id,
-        WithUnsupportedType.class, WithUnsupportedType.class, Object.class);
+    EasyDocument document = new EasyDocument(id, WithUnsupportedType.class,
+        WithUnsupportedType.class, Object.class);
     binder.getBean(document);
   }
 
   @Test
   public void withNullProperty() {
     long id = 123;
-    EasyDocument document = new EasyDocument(Basic.class, id, Basic.class,
-        Basic.class, Object.class).set("Basic__id", id).set("Basic__property",
-        null);
+    EasyDocument document = new EasyDocument(id, Basic.class, Basic.class,
+        Object.class).set("Basic__id", id).set("Basic__property", null);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(Basic.class));
     Basic bean = (Basic) object;

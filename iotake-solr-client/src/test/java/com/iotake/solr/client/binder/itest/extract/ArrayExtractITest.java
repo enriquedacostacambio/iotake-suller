@@ -28,9 +28,9 @@ public class ArrayExtractITest extends AbstractExtractITest {
   public void withArray() {
     long id = 123;
     String[] array = { "abc", "def" };
-    EasyDocument document = new EasyDocument(WithArray.class, id,
-        WithArray.class, WithArray.class, Object.class)
-        .set("WithArray__id", id).set("WithArray__array", array);
+    EasyDocument document = new EasyDocument(id, WithArray.class,
+        WithArray.class, Object.class).set("WithArray__id", id).set(
+        "WithArray__array", array);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithArray.class));
     WithArray bean = (WithArray) object;
@@ -54,11 +54,10 @@ public class ArrayExtractITest extends AbstractExtractITest {
   public void withEmbeddedArray() {
     long id = 123;
     Integer[] embeddedArray = { 456, 789 };
-    EasyDocument document = new EasyDocument(WithEmbeddedArray.class, id,
-        WithEmbeddedArray.class, WithEmbeddedArray.class, Object.class).set(
-        "WithEmbeddedArray__id", id).set(
-        "WithEmbeddedArray__embedded__embeddedArray",
-        Arrays.asList(embeddedArray));
+    EasyDocument document = new EasyDocument(id, WithEmbeddedArray.class,
+        WithEmbeddedArray.class, Object.class).set("WithEmbeddedArray__id", id)
+        .set("WithEmbeddedArray__embedded__embeddedArray",
+            Arrays.asList(embeddedArray));
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithEmbeddedArray.class));
     WithEmbeddedArray bean = (WithEmbeddedArray) object;
@@ -83,9 +82,9 @@ public class ArrayExtractITest extends AbstractExtractITest {
   public void withArrayOfEmbeddables() {
     long id = 123;
     Short[] embeddedProperties = new Short[] { (short) 23, (short) 45 };
-    EasyDocument document = new EasyDocument(WithArrayOfEmbeddables.class, id,
-        WithArrayOfEmbeddables.class, WithArrayOfEmbeddables.class,
-        Object.class).set("WithArrayOfEmbeddables__id", id).set(
+    EasyDocument document = new EasyDocument(id, WithArrayOfEmbeddables.class,
+        WithArrayOfEmbeddables.class, Object.class).set(
+        "WithArrayOfEmbeddables__id", id).set(
         "WithArrayOfEmbeddables__array__embeddedProperty",
         Arrays.asList(embeddedProperties));
     Object object = binder.getBean(document);
@@ -104,9 +103,9 @@ public class ArrayExtractITest extends AbstractExtractITest {
   @Test
   public void withNullArray() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithArray.class, id,
-        WithArray.class, WithArray.class, Object.class)
-        .set("WithArray__id", id).set("WithArray__array", null);
+    EasyDocument document = new EasyDocument(id, WithArray.class,
+        WithArray.class, Object.class).set("WithArray__id", id).set(
+        "WithArray__array", null);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithArray.class));
     WithArray bean = (WithArray) object;
@@ -118,9 +117,9 @@ public class ArrayExtractITest extends AbstractExtractITest {
   @Test
   public void withEmptyArray() {
     long id = 123;
-    EasyDocument document = new EasyDocument(WithArray.class, id,
-        WithArray.class, WithArray.class, Object.class)
-        .set("WithArray__id", id).set("WithArray__array", null);
+    EasyDocument document = new EasyDocument(id, WithArray.class,
+        WithArray.class, Object.class).set("WithArray__id", id).set(
+        "WithArray__array", null);
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithArray.class));
     WithArray bean = (WithArray) object;
@@ -133,9 +132,9 @@ public class ArrayExtractITest extends AbstractExtractITest {
   public void withSingleElementArray() {
     long id = 123;
     String[] array = new String[] { "abc" };
-    EasyDocument document = new EasyDocument(WithArray.class, id,
-        WithArray.class, WithArray.class, Object.class)
-        .set("WithArray__id", id).set("WithArray__array", Arrays.asList(array));
+    EasyDocument document = new EasyDocument(id, WithArray.class,
+        WithArray.class, Object.class).set("WithArray__id", id).set(
+        "WithArray__array", Arrays.asList(array));
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithArray.class));
     WithArray bean = (WithArray) object;
@@ -148,9 +147,9 @@ public class ArrayExtractITest extends AbstractExtractITest {
   public void withNullElementArray() {
     long id = 123;
     String[] array = new String[] { "abc", null };
-    EasyDocument document = new EasyDocument(WithArray.class, id,
-        WithArray.class, WithArray.class, Object.class)
-        .set("WithArray__id", id).set("WithArray__array", Arrays.asList(array));
+    EasyDocument document = new EasyDocument(id, WithArray.class,
+        WithArray.class, Object.class).set("WithArray__id", id).set(
+        "WithArray__array", Arrays.asList(array));
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithArray.class));
     WithArray bean = (WithArray) object;
@@ -166,9 +165,9 @@ public class ArrayExtractITest extends AbstractExtractITest {
 
     long id = 123;
     String[] array = new String[] { "abc", null };
-    EasyDocument document = new EasyDocument(WithArray.class, id,
-        WithArray.class, WithArray.class, Object.class)
-        .set("WithArray__id", id).set("WithArray__array", Arrays.asList(array));
+    EasyDocument document = new EasyDocument(id, WithArray.class,
+        WithArray.class, Object.class).set("WithArray__id", id).set(
+        "WithArray__array", Arrays.asList(array));
     Object object = binder.getBean(document);
     assertThat(object, CoreMatchers.instanceOf(WithArray.class));
     WithArray bean = (WithArray) object;
