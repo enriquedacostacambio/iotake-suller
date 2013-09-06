@@ -19,6 +19,11 @@ public class SingleSlotNotMultiValuedPropertySource extends
     this.converter = converter;
   }
 
+  @Override
+  public Slot[] getSlots() {
+    return new Slot[] { converter.getSlot() };
+  }
+
   protected void doFieldTransfer(Object value, SolrInputDocument document) {
     Object documentValue = converter.toDocumentValue(value);
     set(document, converter.getSlot(), documentValue);

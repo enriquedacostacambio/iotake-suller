@@ -16,5 +16,7 @@ public abstract class PropertySource extends FieldSource {
   public DocumentSource[] getInnerSources() {
     return new DocumentSource[0];
   }
+  
+  public abstract Slot[] getSlots();
 
 }

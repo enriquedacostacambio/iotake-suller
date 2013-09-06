@@ -23,6 +23,12 @@ public class MultiSlotMultiValuedPropertySource extends
     this.converter = converter;
   }
 
+  @Override
+  public Slot[] getSlots() {
+    return converter.getSlots().clone();
+  }
+  
+  
   public void transferEmpty(SolrInputDocument document) {
     Slot[] slots = converter.getSlots();
     for (Slot slot : slots) {
