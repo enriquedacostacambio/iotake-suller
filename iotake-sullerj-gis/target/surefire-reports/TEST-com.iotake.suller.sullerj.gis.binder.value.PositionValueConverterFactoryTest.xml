@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.301" errors="0" skipped="0" tests="7" name="com.iotake.suller.sullerj.gis.binder.value.PositionValueConverterFactoryTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="c:\Program Files\Java\jdk1.7.0_09\jre\bin"/>
+    <property name="java.vm.version" value="23.5-b02"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\workspaces\iotake\suller\repository"/>
+    <property name="java.runtime.version" value="1.7.0_09-b05"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="c:\Program Files\Java\jdk1.7.0_09\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\edacosta.AD\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="net.sourceforge.cobertura.datafile" value="C:\workspaces\iotake\suller\repository\iotake-sullerj-gis\target\cobertura\cobertura.ser"/>
+    <property name="classworlds.conf" value="c:\apps\apache-maven-3.0.4\bin\..\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="c:\Program Files\Java\jdk1.7.0_09\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Program Files\Java\jdk1.7.0_09\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\apps\Python33\;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\COMMON FILES\LENOVO;C:\PROGRAM FILES\COMMON FILES\LENOVO;C:\SWTOOLS\READYAPPS;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Intel\Services\IPT\;C:\Program Files\ThinkPad\Bluetooth Software\;C:\Program Files\ThinkPad\Bluetooth Software\syswow64;C:\Program Files (x86)\Shoreline Communications\ShoreWare Client\;C:\Program Files (x86)\Google\Google Apps Sync\;C:\Program Files (x86)\Google\Google Apps Migration\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\TortoiseGit\bin;c:\apps\apache-ant-1.8.4\bin;c:\apps\apache-maven-3.0.4\bin;C:\Program Files (x86)\GNU\GnuPG\pub;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Windows Live\Shared;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\edacosta.AD"/>
+    <property name="user.timezone" value="America/Los_Angeles"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="edacosta"/>
+    <property name="java.class.path" value="c:\apps\apache-maven-3.0.4\bin\..\boot\plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="c:\Program Files\Java\jdk1.7.0_09\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher source:jar install -Pgis"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_09"/>
+    <property name="java.ext.dirs" value="c:\Program Files\Java\jdk1.7.0_09\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="c:\Program Files\Java\jdk1.7.0_09\jre\lib\resources.jar;c:\Program Files\Java\jdk1.7.0_09\jre\lib\rt.jar;c:\Program Files\Java\jdk1.7.0_09\jre\lib\sunrsasign.jar;c:\Program Files\Java\jdk1.7.0_09\jre\lib\jsse.jar;c:\Program Files\Java\jdk1.7.0_09\jre\lib\jce.jar;c:\Program Files\Java\jdk1.7.0_09\jre\lib\charsets.jar;c:\Program Files\Java\jdk1.7.0_09\jre\lib\jfr.jar;c:\Program Files\Java\jdk1.7.0_09\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="c:\apps\apache-maven-3.0.4\bin\.."/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="project.build.outputDirectory" value="C:\workspaces\iotake\suller\repository\iotake-sullerj-gis\target\generated-classes\cobertura"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase time="0.26" classname="com.iotake.suller.sullerj.gis.binder.value.PositionValueConverterFactoryTest" name="doCreate"/>
+  <testcase time="0" classname="com.iotake.suller.sullerj.gis.binder.value.PositionValueConverterFactoryTest" name="contruct"/>
+  <testcase time="0" classname="com.iotake.suller.sullerj.gis.binder.value.PositionValueConverterFactoryTest" name="createWithNullTargetType"/>
+  <testcase time="0" classname="com.iotake.suller.sullerj.gis.binder.value.PositionValueConverterFactoryTest" name="createWithNullDocumentClass"/>
+  <testcase time="0" classname="com.iotake.suller.sullerj.gis.binder.value.PositionValueConverterFactoryTest" name="createWithNullField"/>
+  <testcase time="0" classname="com.iotake.suller.sullerj.gis.binder.value.PositionValueConverterFactoryTest" name="createWithNullPath"/>
+  <testcase time="0" classname="com.iotake.suller.sullerj.gis.binder.value.PositionValueConverterFactoryTest" name="createWithNullSlotNameSeparator"/>
+</testsuite>

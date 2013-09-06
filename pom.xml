@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.iotake.solr</groupId>
-  <artifactId>iotake-solr</artifactId>
-  <name>iotake-solr</name>
+  <groupId>com.iotake.suller</groupId>
+  <artifactId>iotake-suller</artifactId>
   <packaging>pom</packaging>
   <version>0.0.1-SNAPSHOT</version>
 
-  <description>SolrJ extension with richer document bindings</description>
+  <name>iotake Suller</name>
+  <description>Suller is a set of Solr extensions including SullerJ, an extension to SolrJ with richer bindings.</description>
   <url>https://github.com/enriquedacostacambio/iotake-solr/</url>
   <licenses>
     <license>
@@ -18,8 +18,8 @@
   </licenses>
 
   <modules>
-    <module>iotake-solr-client</module>
-    <module>iotake-solr-client-gis</module>
+    <module>iotake-sullerj</module>
+    <module>iotake-sullerj-gis</module>
   </modules>
   
   <scm>
@@ -107,13 +107,13 @@
     <dependencies>
       <!-- intradependencies -->
       <dependency>
-        <groupId>com.iotake.solr</groupId>
-        <artifactId>iotake-solr-client</artifactId>
+        <groupId>com.iotake.suller</groupId>
+        <artifactId>iotake-sullerj</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.iotake.solr</groupId>
-        <artifactId>iotake-solr-client</artifactId>
+        <groupId>com.iotake.suller</groupId>
+        <artifactId>iotake-sullerj</artifactId>
         <type>test-jar</type>
         <version>${project.version}</version>
         <scope>test</scope>

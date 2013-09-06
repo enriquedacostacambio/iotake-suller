@@ -1,4 +1,4 @@
-iotake-solr
+iotake Suller
 ===========
 
-Extension to Solrj with richer document bindings
+Suller is a set of Solr extensions including SullerJ, an extension to SolrJ with richer bindings.
