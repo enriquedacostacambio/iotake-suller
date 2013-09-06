@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.iotake.solr</groupId>
     <artifactId>iotake-solr</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>iotake-solr-client</artifactId>
   <name>iotake-solr-client</name>
