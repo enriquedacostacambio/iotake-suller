@@ -12,8 +12,8 @@ import com.iotake.suller.sullerj.binder.ExtendedDocumentObjectBinderBuilder;
 import com.iotake.suller.sullerj.binder.annotation.SolrDocument;
 import com.iotake.suller.sullerj.binder.annotation.SolrId;
 import com.iotake.suller.sullerj.binder.itest.BaseITest;
-import com.iotake.suller.sullerj.binder.session.Session;
-import com.iotake.suller.sullerj.binder.session.basic.ThreadBoundSessionFactory;
+import com.iotake.suller.sullerj.session.Session;
+import com.iotake.suller.sullerj.session.basic.ThreadBoundSessionFactory;
 
 public class SessionIdentityITest extends BaseITest {
 

@@ -1,4 +1,4 @@
-package com.iotake.suller.sullerj.binder.session.basic;
+package com.iotake.suller.sullerj.session.basic;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import com.iotake.suller.sullerj.binder.session.WorkingSessionFactory;
+import com.iotake.suller.sullerj.session.WorkingSessionFactory;
 
 public class DefaultSession extends AbstractSession {
 

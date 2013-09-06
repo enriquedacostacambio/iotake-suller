@@ -1,4 +1,4 @@
-package com.iotake.suller.sullerj.binder.session;
+package com.iotake.suller.sullerj.session;
 
 /**
  * Provides access to a context session that is capable of maintaining object

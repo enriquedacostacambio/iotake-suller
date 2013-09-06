@@ -1,8 +1,8 @@
-package com.iotake.suller.sullerj.binder.session.basic;
+package com.iotake.suller.sullerj.session.basic;
 
-import com.iotake.suller.sullerj.binder.session.SessionCreator;
-import com.iotake.suller.sullerj.binder.session.WorkingSession;
-import com.iotake.suller.sullerj.binder.session.WorkingSessionFactory;
+import com.iotake.suller.sullerj.session.SessionCreator;
+import com.iotake.suller.sullerj.session.WorkingSession;
+import com.iotake.suller.sullerj.session.WorkingSessionFactory;
 
 public abstract class AbstractSessionFactory implements WorkingSessionFactory {
 

@@ -17,12 +17,12 @@ import com.iotake.suller.sullerj.binder.instantiator.BeanInstantiator;
 import com.iotake.suller.sullerj.binder.instantiator.BeanInstantiatorFactory;
 import com.iotake.suller.sullerj.binder.postprocessor.BeanPostProcessor;
 import com.iotake.suller.sullerj.binder.postprocessor.DocumentPostProcessor;
-import com.iotake.suller.sullerj.binder.session.SessionFactory;
-import com.iotake.suller.sullerj.binder.session.WorkingSession;
-import com.iotake.suller.sullerj.binder.session.WorkingSessionFactory;
 import com.iotake.suller.sullerj.binder.source.DocumentSourceBuilder;
 import com.iotake.suller.sullerj.binder.source.RootClassSource;
 import com.iotake.suller.sullerj.binder.value.ValueConverterFactory;
+import com.iotake.suller.sullerj.session.SessionFactory;
+import com.iotake.suller.sullerj.session.WorkingSession;
+import com.iotake.suller.sullerj.session.WorkingSessionFactory;
 
 public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
 

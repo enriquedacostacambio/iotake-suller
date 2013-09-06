@@ -1,4 +1,4 @@
-package com.iotake.suller.sullerj.binder.session;
+package com.iotake.suller.sullerj.session;
 
 
 /**

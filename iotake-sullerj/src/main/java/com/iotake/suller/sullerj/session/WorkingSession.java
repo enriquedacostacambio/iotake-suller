@@ -1,4 +1,4 @@
-package com.iotake.suller.sullerj.binder.session;
+package com.iotake.suller.sullerj.session;
 
 /**
  * Interface used internally by the binder. All sessions must implement this
