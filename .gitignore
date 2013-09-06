@@ -1,8 +1,8 @@
-/iotake-solr-client/target
-/iotake-solr-client/.settings
-/iotake-solr-client-gis/target
-/iotake-solr-client-gis/.settings
-/iotake-solr-client/.project
-/iotake-solr-client/.classpath
-/iotake-solr-client-gis/.classpath
-/iotake-solr-client-gis/.project
+/iotake-sullerj/target
+/iotake-sullerj/.settings
+/iotake-sullerj-gis/target
+/iotake-sullerj-gis/.settings
+/iotake-sullerj/.project
+/iotake-sullerj/.classpath
+/iotake-sullerj-gis/.classpath
+/iotake-sullerj-gis/.project

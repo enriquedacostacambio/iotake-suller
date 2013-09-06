@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.iotake.suller.sullerj.binder.itest.extract.BasicExtractITest
--------------------------------------------------------------------------------
-Tests run: 14, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.025 sec
