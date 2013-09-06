@@ -21,6 +21,13 @@
     <module>iotake-solr-client</module>
     <module>iotake-solr-client-gis</module>
   </modules>
+  
+  <scm>
+    <connection>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</connection>
+    <developerConnection>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</developerConnection>
+    <url>git@github.com:enriquedacostacambio/iotake-solr.git</url>
+  </scm>
+
   <build>
     <plugins>
       <plugin>
@@ -76,6 +83,7 @@
       </plugin>
     </plugins>
   </reporting>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- versions -->
