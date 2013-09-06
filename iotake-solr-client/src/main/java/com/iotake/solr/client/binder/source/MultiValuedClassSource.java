@@ -23,7 +23,7 @@ public abstract class MultiValuedClassSource extends ClassSource implements
 
   public void transferEmpty(SolrInputDocument document) {
     for (FieldSource fieldSource : getFieldSources()) {
-      ((MultiValuedSource) fieldSource).transferEmpty(document);
+      ((MultiValuableDocumentSource) fieldSource).transferEmpty(document);
     }
   }
 
