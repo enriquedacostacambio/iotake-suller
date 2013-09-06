@@ -17,15 +17,16 @@ import com.iotake.solr.client.binder.instantiator.BeanInstantiator;
 import com.iotake.solr.client.binder.instantiator.BeanInstantiatorFactory;
 import com.iotake.solr.client.binder.postprocessor.BeanPostProcessor;
 import com.iotake.solr.client.binder.postprocessor.DocumentPostProcessor;
-import com.iotake.solr.client.binder.session.Session;
-import com.iotake.solr.client.binder.session.SessionContext;
+import com.iotake.solr.client.binder.session.SessionFactory;
+import com.iotake.solr.client.binder.session.WorkingSession;
+import com.iotake.solr.client.binder.session.WorkingSessionFactory;
 import com.iotake.solr.client.binder.source.DocumentSourceBuilder;
 import com.iotake.solr.client.binder.source.RootClassSource;
 import com.iotake.solr.client.binder.value.ValueConverterFactory;
 
 public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
 
-  private final SessionContext sessionContext;
+  private final WorkingSessionFactory sessionFactory;
   private final DocumentSourceBuilder sourceBuilder;
   private final ClassLoader classLoader;
   private final String fieldPathSeprator;
@@ -42,7 +43,7 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
 
   public ExtendedDocumentObjectBinder() {
     this(
-        ExtendedDocumentObjectBinderBuilder.DEFAULT_SESSION_CONTEXT,
+        ExtendedDocumentObjectBinderBuilder.DEFAULT_SESSION_FACTORY,
         ExtendedDocumentObjectBinderBuilder.DEFAULT_FIELD_PATH_SEPARATOR,
         ExtendedDocumentObjectBinderBuilder.DEFAULT_GLOBAL_ID_FIELD_NAME,
         ExtendedDocumentObjectBinderBuilder.DEFAULT_CLASS_FIELD_NAME,
@@ -57,7 +58,7 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
         ExtendedDocumentObjectBinderBuilder.DEFAULT_NULL_TRICK_ENABLED);
   }
 
-  public ExtendedDocumentObjectBinder(SessionContext sessionContext,
+  public ExtendedDocumentObjectBinder(WorkingSessionFactory sessionFactory,
       String fieldPathSeprator, String globalIdFieldName,
       String classFieldName, String classesFieldName, ClassLoader classLoader,
       Map<Class<?>, CollectionCreatorFactory> collectionCreatorFactories,
@@ -67,7 +68,7 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
       List<BeanPostProcessor> beanPostProcessors,
       List<DocumentPostProcessor> documentPostProcessors,
       boolean nullTrickEnabled) {
-    this.sessionContext = sessionContext;
+    this.sessionFactory = sessionFactory;
     this.fieldPathSeprator = fieldPathSeprator;
     this.globalIdFieldName = globalIdFieldName;
     this.classFieldName = classFieldName;
@@ -87,8 +88,8 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
     this.sourceBuilder = new DocumentSourceBuilder(this);
   }
 
-  public SessionContext getSessionContext() {
-    return sessionContext;
+  public SessionFactory getSessionFactory() {
+    return sessionFactory;
   }
 
   public String getFieldPathSeprator() {
@@ -142,6 +143,10 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
     }
   }
 
+  private WorkingSession getCurrentSession() {
+    return sessionFactory.current();
+  }
+
   public <T> T getBean(SolrDocument document) {
     return getBean(null, document);
   }
@@ -158,7 +163,7 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
     RootClassSource rootClassSource = getRootClassSource(beanClass);
     Object bean;
     try {
-      Session session = sessionContext.current();
+      WorkingSession session = getCurrentSession();
       if (session == null) {
         bean = extract(rootClassSource, document);
       } else {
@@ -215,10 +220,9 @@ public class ExtendedDocumentObjectBinder extends DocumentObjectBinder {
       SolrInputDocument document = transfer(bean, rootClassSource);
 
       Object id = rootClassSource.getId(bean);
-      Session session = sessionContext.current();
+      WorkingSession session = getCurrentSession();
       if (session != null) {
         session.register(id, bean);
-      } else {
       }
       return document;
     } catch (Exception e) {

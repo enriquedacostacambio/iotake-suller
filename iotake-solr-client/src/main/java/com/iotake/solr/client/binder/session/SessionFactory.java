@@ -7,7 +7,7 @@ package com.iotake.solr.client.binder.session;
  * @author enrque.dacostacambio
  * 
  */
-public interface SessionContext {
+public interface SessionFactory {
 
   /**
    * Begins a session. If requiresNew is false it could retrieve an already
@@ -27,11 +27,4 @@ public interface SessionContext {
    */
   Session current();
 
-  /**
-   * Closes the current session.
-   * 
-   * @throws IllegalStateException
-   *           if there is no current session.
-   */
-  void close();
 }

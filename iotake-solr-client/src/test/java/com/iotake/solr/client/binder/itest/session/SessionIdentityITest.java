@@ -12,14 +12,15 @@ import com.iotake.solr.client.binder.ExtendedDocumentObjectBinderBuilder;
 import com.iotake.solr.client.binder.annotation.SolrDocument;
 import com.iotake.solr.client.binder.annotation.SolrId;
 import com.iotake.solr.client.binder.itest.BaseITest;
-import com.iotake.solr.client.binder.session.basic.ThreadBoundSessionContext;
+import com.iotake.solr.client.binder.session.Session;
+import com.iotake.solr.client.binder.session.basic.ThreadBoundSessionFactory;
 
 public class SessionIdentityITest extends BaseITest {
 
   @Before
   public void createBinder() {
-    binder = new ExtendedDocumentObjectBinderBuilder().setSessionContext(
-        new ThreadBoundSessionContext()).build();
+    binder = new ExtendedDocumentObjectBinderBuilder().setSessionFactory(
+        new ThreadBoundSessionFactory()).build();
   }
 
   @SolrDocument
@@ -31,8 +32,8 @@ public class SessionIdentityITest extends BaseITest {
 
   private EasyDocument createDocument() {
     Long id = 123456789L;
-    return new EasyDocument(id, Bean.class, Bean.class,
-        Object.class).set("Bean__id", id);
+    return new EasyDocument(id, Bean.class, Bean.class, Object.class).set(
+        "Bean__id", id);
   }
 
   private Bean createBean() {
@@ -59,7 +60,7 @@ public class SessionIdentityITest extends BaseITest {
 
   @Test
   public void retrieveTwiceOnSession() {
-    binder.getSessionContext().begin(false);
+    Session session = binder.getSessionFactory().begin(false);
     try {
       EasyDocument document = createDocument();
       Bean first = binder.getBean(document);
@@ -68,27 +69,27 @@ public class SessionIdentityITest extends BaseITest {
       assertSame(first, second);
 
     } finally {
-      binder.getSessionContext().close();
+      session.close();
     }
   }
 
   @Test
   public void retrieveOnNestedSessions() {
-    binder.getSessionContext().begin(false);
+    Session session = binder.getSessionFactory().begin(false);
     try {
       EasyDocument document = createDocument();
       Bean outer = binder.getBean(document);
       assertNotNull(outer);
-      binder.getSessionContext().begin(true);
+      Session nestedSession = binder.getSessionFactory().begin(true);
       try {
         Bean inner = binder.getBean(document);
         assertNotSame(outer, inner);
       } finally {
-        binder.getSessionContext().close();
+        nestedSession.close();
       }
 
     } finally {
-      binder.getSessionContext().close();
+      session.close();
     }
   }
 
@@ -111,7 +112,7 @@ public class SessionIdentityITest extends BaseITest {
 
   @Test
   public void storeAndRetrieveOnSession() {
-    binder.getSessionContext().begin(false);
+    Session session = binder.getSessionFactory().begin(false);
     try {
       Bean stored = createBean();
       SolrInputDocument inputDocument = binder.toSolrInputDocument(stored);
@@ -120,27 +121,27 @@ public class SessionIdentityITest extends BaseITest {
       Bean retrieved = binder.getBean(document);
       assertSame(stored, retrieved);
     } finally {
-      binder.getSessionContext().close();
+      session.close();
     }
   }
 
   @Test
   public void storeAndRetrieveOnNestedSessions() {
-    binder.getSessionContext().begin(false);
+    Session session = binder.getSessionFactory().begin(false);
     try {
       Bean stored = createBean();
       SolrInputDocument inputDocument = binder.toSolrInputDocument(stored);
       assertNotNull(inputDocument);
-      binder.getSessionContext().begin(true);
+      Session nestedSession = binder.getSessionFactory().begin(true);
       try {
         EasyDocument document = createDocument();
         Bean retrieved = binder.getBean(document);
         assertNotSame(stored, retrieved);
       } finally {
-        binder.getSessionContext().close();
+        nestedSession.close();
       }
     } finally {
-      binder.getSessionContext().close();
+      session.close();
     }
   }
 }

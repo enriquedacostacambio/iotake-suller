@@ -1,7 +1,7 @@
 package com.iotake.solr.client.binder.session;
 
 /**
- * Binder session
+ * Binder session, used to preserve object identity (if desired).
  * 
  * @author enrque.dacostacambio
  * 
@@ -22,20 +22,6 @@ public interface Session {
    *           If session is closed.
    */
   <T> T lookup(Class<T> beanClass, Object id);
-
-  /**
-   * Registers a bean in the session.
-   * 
-   * @param id
-   *          The bean id.
-   * @param bean
-   *          The bean.
-   * @throws NullPointerException
-   *           If id or bean are null.
-   * @throws IllegalStateException
-   *           If session is closed.
-   */
-  <T> void register(Object id, T bean);
 
   /**
    * Removes a bean from the session. Meant for long running sessions. Use
@@ -60,5 +46,13 @@ public interface Session {
    *           If session is closed.
    */
   void clear();
+
+  /**
+   * Clears and closes the session.
+   * 
+   * @throws IllegalStateException
+   *           If session is closed.
+   */
+  void close();
 
 }

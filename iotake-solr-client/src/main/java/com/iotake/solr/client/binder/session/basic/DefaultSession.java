@@ -7,9 +7,13 @@ import java.util.Map;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import com.iotake.solr.client.binder.session.Session;
+import com.iotake.solr.client.binder.session.WorkingSessionFactory;
 
-public class SessionImpl implements Session {
+public class DefaultSession extends AbstractSession {
+
+  public DefaultSession(WorkingSessionFactory factory) {
+    super(factory);
+  }
 
   private static class Key {
     private final Class<?> beanClass;
@@ -77,13 +81,12 @@ public class SessionImpl implements Session {
     beans.clear();
   }
 
-  public void close() {
-    checkNotClosed();
+  public void doClose() {
     clear();
     closed = true;
   }
 
-  private void checkNotClosed() {
+  protected void checkNotClosed() {
     if (closed) {
       throw new IllegalStateException("Session closed.");
     }

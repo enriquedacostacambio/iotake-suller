@@ -23,8 +23,8 @@ import com.iotake.solr.client.binder.instantiator.BeanInstantiatorFactory;
 import com.iotake.solr.client.binder.instantiator.basic.DefaultBeanInstantiatorFactory;
 import com.iotake.solr.client.binder.postprocessor.BeanPostProcessor;
 import com.iotake.solr.client.binder.postprocessor.DocumentPostProcessor;
-import com.iotake.solr.client.binder.session.SessionContext;
-import com.iotake.solr.client.binder.session.basic.NullSessionContext;
+import com.iotake.solr.client.binder.session.WorkingSessionFactory;
+import com.iotake.solr.client.binder.session.basic.NullSessionFactory;
 import com.iotake.solr.client.binder.value.BigDecimalValueConverterFactory;
 import com.iotake.solr.client.binder.value.BigIntegerValueConverterFactory;
 import com.iotake.solr.client.binder.value.NativeValueConverterFactory;
@@ -34,7 +34,7 @@ import com.iotake.solr.client.binder.value.ValueConverterFactory;
 
 public class ExtendedDocumentObjectBinderBuilder {
 
-  public static final SessionContext DEFAULT_SESSION_CONTEXT = NullSessionContext.INSTANCE;
+  public static final WorkingSessionFactory DEFAULT_SESSION_FACTORY = NullSessionFactory.INSTANCE;
   public static final String DEFAULT_FIELD_PATH_SEPARATOR = "__";
   public static final String DEFAULT_GLOBAL_ID_FIELD_NAME = "id";
   public static final String DEFAULT_CLASS_FIELD_NAME = "class";
@@ -96,7 +96,7 @@ public class ExtendedDocumentObjectBinderBuilder {
         .unmodifiableMap(factories);
   }
 
-  private volatile SessionContext sessionContext = DEFAULT_SESSION_CONTEXT;
+  private volatile WorkingSessionFactory sessionFactory = DEFAULT_SESSION_FACTORY;
   private volatile ClassLoader classLoader = DEFAULT_CLASS_LOADER;
   private volatile String fieldPathSeprator = DEFAULT_FIELD_PATH_SEPARATOR;
   private volatile String globalIdFieldName = DEFAULT_GLOBAL_ID_FIELD_NAME;
@@ -115,13 +115,13 @@ public class ExtendedDocumentObjectBinderBuilder {
   public ExtendedDocumentObjectBinderBuilder() {
   }
 
-  public SessionContext getSessionContext() {
-    return sessionContext;
+  public WorkingSessionFactory getSessionFactory() {
+    return sessionFactory;
   }
 
-  public ExtendedDocumentObjectBinderBuilder setSessionContext(
-      SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
+  public ExtendedDocumentObjectBinderBuilder setSessionFactory(
+      WorkingSessionFactory sessionContext) {
+    this.sessionFactory = sessionContext;
     return this;
   }
 
@@ -302,7 +302,7 @@ public class ExtendedDocumentObjectBinderBuilder {
       valueConverterFactories.putAll(DEFAULT_VALUE_CONVERTER_FACTORIES);
     }
     valueConverterFactories.putAll(this.valueConverterFactories);
-    return new ExtendedDocumentObjectBinder(sessionContext, fieldPathSeprator,
+    return new ExtendedDocumentObjectBinder(sessionFactory, fieldPathSeprator,
         globalIdFieldName, classFieldName, classesFieldName, classLoader,
         collectionCreatorFactories, valueConverterFactories,
         fallbackValueConverterFactory, beanInstantiatorFactory,
