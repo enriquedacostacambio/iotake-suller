@@ -27,7 +27,15 @@
     <developerConnection>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</developerConnection>
     <url>git@github.com:enriquedacostacambio/iotake-solr.git</url>
   </scm>
-
+  
+  <developers>
+    <developer>
+      <id>enrique.dacostacambio</id>
+      <name>Enrique da Costa Cambio</name>
+      <email>enrique.dacostacambio@gmail.com</email>
+    </developer>
+  </developers>
+  
   <build>
     <plugins>
       <plugin>
