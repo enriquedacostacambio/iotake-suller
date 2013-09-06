@@ -13,14 +13,6 @@
   <build>
   </build>
   
-  <repositories>
-    <repository>
-      <id>repo.opengeo.org</id>
-      <name>OpenGeo Maven Repository</name>
-      <url>http://repo.opengeo.org</url>
-    </repository>
-  </repositories>
-  
   <dependencies>
     <!-- intradependencies -->
     <dependency>
