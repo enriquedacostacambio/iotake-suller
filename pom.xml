@@ -8,7 +8,7 @@
 
   <name>iotake Suller</name>
   <description>Suller is a set of Solr extensions including SullerJ, an extension to SolrJ with richer bindings.</description>
-  <url>https://github.com/enriquedacostacambio/iotake-solr/</url>
+  <url>https://github.com/enriquedacostacambio/iotake-suller/</url>
   <licenses>
     <license>
       <name>The MIT License</name>
@@ -24,9 +24,9 @@
   </modules>
   
   <scm>
-    <connection>scm:git:https@github.com:enriquedacostacambio/iotake-solr.git</connection>
-    <developerConnection>scm:git:https@github.com:enriquedacostacambio/iotake-solr.git</developerConnection>
-    <url>scm:git:https@github.com:enriquedacostacambio/iotake-solr.git</url>
+    <connection>scm:git:https@github.com:enriquedacostacambio/iotake-suller.git</connection>
+    <developerConnection>scm:git:https@github.com:enriquedacostacambio/iotake-suller.git</developerConnection>
+    <url>scm:git:https@github.com:enriquedacostacambio/iotake-suller.git</url>
   </scm>
   
   <developers>
