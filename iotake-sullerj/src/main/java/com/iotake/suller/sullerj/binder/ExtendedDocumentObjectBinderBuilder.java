@@ -120,8 +120,8 @@ public class ExtendedDocumentObjectBinderBuilder {
   }
 
   public ExtendedDocumentObjectBinderBuilder setSessionFactory(
-      WorkingSessionFactory sessionContext) {
-    this.sessionFactory = sessionContext;
+      WorkingSessionFactory sessionFactory) {
+    this.sessionFactory = sessionFactory;
     return this;
   }
 
