@@ -8,7 +8,7 @@
   <groupId>com.iotake.suller</groupId>
   <artifactId>iotake-suller</artifactId>
   <packaging>pom</packaging>
-  <version>0.0.1.M1</version>
+  <version>0.0.1-SNAPSHOT</version>
 
   <name>iotake Suller</name>
   <description>Suller is a set of Solr extensions including SullerJ, an extension to SolrJ with richer bindings.</description>
@@ -31,7 +31,7 @@
     <connection>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</connection>
     <developerConnection>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</developerConnection>
     <url>http://github.com/enriquedacostacambio/iotake-suller</url>
-    <tag>0.0.1.M1</tag>
+    <tag>HEAD</tag>
   </scm>
   
   <developers>
