@@ -72,112 +72,112 @@ The bare minimum is to annotate document classes with `@SolrDocument` and to ann
 
 * `@SolrDocument`: Indicates that a class is a Solr document.
 
-        ```java
-        @SolrDocument
-        public class MyDocument {...}
-        ```
+    ```java
+    @SolrDocument
+    public class MyDocument {...}
+    ```
 
 * `@SolrEmbeddable`: Indicates that a class is embeddable, its fields will be the containing document class.
 
-        ```java
-        @SolrEmbeddable
-        public class MyEmbeddable {...}
-        
-        @SolrDocument
-        public class MyDocument {
-          private MyEmbeddable attribute;
-          ...
-        }
-        ```
+    ```java
+    @SolrEmbeddable
+    public class MyEmbeddable {...}
+    
+    @SolrDocument
+    public class MyDocument {
+      private MyEmbeddable attribute;
+      ...
+    }
+    ```
 
 * `@SolrEnumerated`: Allows to choose to map Java enums using ordinal numbers or names. If the annotation is not specified EnumType.NAME is assumed.
 
-        ```java
-        public enum MyEnum {...}
-        
-        @SolrDocument
-        public class MyDocument {
-          @SolrEnumerated(EnumType.ORDINAL)
-          private MyEnum attribute;
-           ...
-        }
-        ```
+    ```java
+    public enum MyEnum {...}
+    
+    @SolrDocument
+    public class MyDocument {
+      @SolrEnumerated(EnumType.ORDINAL)
+      private MyEnum attribute;
+       ...
+    }
+    ```
 
 * `@SolrId`: Defines the id field. It is mandatory to define exactly one id field per document class, but it could be inherited from a superclass.
 
-        ```java
-        @SolrDocument
-        public class MyDocument {
-          @SolrId
-          private long attribute;
-          ...
-        }
-        ```
+    ```java
+    @SolrDocument
+    public class MyDocument {
+      @SolrId
+      private long attribute;
+      ...
+    }
+    ```
 
 * `@SolrName`: Allows to chose an alternate name for documents and fields. See: Naming.
  
-        ```java
-        @SolrName("MyDoc")
-        @SolrDocument
-        public class MyDocument {
-          @SolrName("attr")
-          private String attribute;
-          ...
-        }
-        ```
+    ```java
+    @SolrName("MyDoc")
+    @SolrDocument
+    public class MyDocument {
+      @SolrName("attr")
+      private String attribute;
+      ...
+    }
+    ```
 * `@SolrReadable`: Allows to set fields as non-readable. If the annotation is not specified the field is assumed to be readable.
  
-        ```java
-        @SolrDocument
-        public class MyDocument {
-          @SolrReadable(false)
-          private String attribute;
-          ...
-        }
-        ```
+    ```java
+    @SolrDocument
+    public class MyDocument {
+      @SolrReadable(false)
+      private String attribute;
+      ...
+    }
+    ```
 
 * `@SolrTarget`: Allows to define a specific implementation class for a field type while having the field declared as a superclass or interface.
-        ```java
-        @SolrDocument
-        public class MyDocument {
-          @SolrTarget(String.class)
-          private CharSequence attribute;
-          ...
-        }
-        ```
+    ```java
+    @SolrDocument
+    public class MyDocument {
+      @SolrTarget(String.class)
+      private CharSequence attribute;
+      ...
+    }
+    ```
 
 * `@SolrTargetCollection`: Allows to define a specific implementation class for a collection field type while having the field declared as a superclass or interface. If missing the collection creator registered for the declared type is used. See: Collections.
  
-        ```java
-        @SolrDocument
-        public class MyDocument {
-          @SolrTargetCollection(ArrayList.class)
-          private List<String> attribute;
-          ...
-        }
-        ```
+    ```java
+    @SolrDocument
+    public class MyDocument {
+      @SolrTargetCollection(ArrayList.class)
+      private List<String> attribute;
+      ...
+    }
+    ```
 
 * `@SolrTransient`: Causes the field to be ignored by the binder.
  
-        ```java
-        @SolrDocument
-        public class MyDocument {
-          @SolrTransient
-          private String attribute;
-          ...
-        }
-        ```
+    ```java
+    @SolrDocument
+    public class MyDocument {
+      @SolrTransient
+      private String attribute;
+      ...
+    }
+    ```
 
 * `@SolrWritable`: Allows to set fields as non-writable. If the annotation is not specified the field is assumed to be writable.
 
-        ```java
-        @SolrDocument
-        public class MyDocument {
-          @SolrWritable(false)
-          private String attribute;
-          ...
-        }
-        ```
+    ```java
+    @SolrDocument
+    public class MyDocument {
+      @SolrWritable(false)
+      private String attribute;
+      ...
+    }
+    ```
 
 Naming
 -----------
