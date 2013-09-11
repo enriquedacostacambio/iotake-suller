@@ -24,9 +24,9 @@
   </modules>
   
   <scm>
-    <connection>scm:git:https@github.com:enriquedacostacambio/iotake-suller.git</connection>
-    <developerConnection>scm:git:https@github.com:enriquedacostacambio/iotake-suller.git</developerConnection>
-    <url>scm:git:https@github.com:enriquedacostacambio/iotake-suller.git</url>
+    <connection>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</connection>
+    <developerConnection>>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</developerConnection>
+    <url>https://github.com/enriquedacostacambio/iotake-suller</url>
   </scm>
   
   <developers>
