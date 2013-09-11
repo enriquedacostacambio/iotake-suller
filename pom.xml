@@ -30,7 +30,7 @@
   
   <scm>
     <connection>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</connection>
-    <developerConnection>>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</developerConnection>
     <url>http://github.com/enriquedacostacambio/iotake-suller</url>
   </scm>
   
