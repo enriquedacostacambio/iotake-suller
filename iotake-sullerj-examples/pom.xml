@@ -14,6 +14,23 @@
   <description>SullerJ examples.</description>
 
   <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <configuration>
+          <check>
+            <haltOnFailure>true</haltOnFailure>
+            <branchRate>0</branchRate>
+            <lineRate>0</lineRate>
+            <packageBranchRate>0</packageBranchRate>
+            <packageLineRate>0</packageLineRate>
+            <totalBranchRate>0</totalBranchRate>
+            <totalLineRate>0</totalLineRate>
+          </check>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
   
   <dependencies>
