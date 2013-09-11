@@ -24,9 +24,9 @@
   </modules>
   
   <scm>
-    <connection>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</connection>
-    <developerConnection>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</developerConnection>
-    <url>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</url>
+    <connection>scm:git:https@github.com:enriquedacostacambio/iotake-solr.git</connection>
+    <developerConnection>scm:git:https@github.com:enriquedacostacambio/iotake-solr.git</developerConnection>
+    <url>scm:git:https@github.com:enriquedacostacambio/iotake-solr.git</url>
   </scm>
   
   <developers>
