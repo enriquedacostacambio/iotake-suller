@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.sonatype.oss</groupId>
@@ -9,7 +8,7 @@
   <groupId>com.iotake.suller</groupId>
   <artifactId>iotake-suller</artifactId>
   <packaging>pom</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1.M1</version>
 
   <name>iotake Suller</name>
   <description>Suller is a set of Solr extensions including SullerJ, an extension to SolrJ with richer bindings.</description>
@@ -32,6 +31,7 @@
     <connection>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</connection>
     <developerConnection>scm:git:https://github.com/enriquedacostacambio/iotake-suller.git</developerConnection>
     <url>http://github.com/enriquedacostacambio/iotake-suller</url>
+    <tag>0.0.1.M1</tag>
   </scm>
   
   <developers>
