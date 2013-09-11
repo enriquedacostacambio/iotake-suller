@@ -25,7 +25,7 @@
   <scm>
     <connection>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</connection>
     <developerConnection>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</developerConnection>
-    <url>git@github.com:enriquedacostacambio/iotake-solr.git</url>
+    <url>scm:git:git@github.com:enriquedacostacambio/iotake-solr.git</url>
     <tag>0.0.1.M1</tag>
   </scm>
   
