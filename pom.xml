@@ -110,7 +110,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- versions -->
-    <solr.version>4.0.0</solr.version>
+    <solr.version>8.2.0</solr.version>
     <geotools.version>8.4</geotools.version>
     <guava.version>14.0.1</guava.version>
     <junit.version>4.10</junit.version>
